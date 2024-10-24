@@ -1,30 +1,24 @@
 import { useState, useEffect } from 'react';
-import diaryService from "./services/diaryService";
+// import diaryService from "../services/diaryService";
+import Axios from 'axios';
 
-//TODO:サンプルデータの配列 データベースから取得するため後ほど削除
-// const diaries = [
-//   {
-//     id: 1,
-//     date: '2024-10-18',
-//     title: '日記1',
-//     content: '内容1'
-//   },
-//   {
-//     id: 2,
-//     date: '2024-10-19',
-//     title: '日記2',
-//     content: '内容2'
-//   }
-// ]
+//TODO:../services/diaryService側に後ほど記載
+// GET /diaries エンドポイントからデータを取得
+const getDiaries = () => {
+  return Axios.get("http://localhost:3001/api/diaries");
+}
 
+console.log(getDiaries());
+
+//データを表示するコンポーネント
 const DiaryList = () => {
-  //日記のデータを設定
+
   const [diaries, setDiaries] = useState([]);
 
   //日記のデータが更新された際も常に取得する
   const refreshDiaries = () => {
-    diaryService.getDiaries().then(response => {
-      setDiaries(response.data)
+    getDiaries().then(response => {
+      setDiaries(response.data);
     });
   };
 
@@ -34,17 +28,22 @@ const DiaryList = () => {
     refreshDiaries();
   }, []);
 
+  //日記一覧を順番に取り出す
+  const diariesList = diaries.map((val, index) => {
+    return(
+    <>
+      <li key={index}>{val.title}</li>
+      <li key={index}>{val.date}</li>
+      <button onClick={refreshDiaries}>削除</button>
+      </>
+      )
+  });
 
+//取得した日記のデータを表示
   return (
     <div className="diaryList">
-      {diaries.map((val, index) => (
-        <>
-          <li key={index}>{val.title}</li>
-          <li key={index}>{val.date}</li>
-          <button>削除</button>
-        </>
-      ))}
-    </div>
+      {diariesList}
+    </  div>
   )
 }
 
