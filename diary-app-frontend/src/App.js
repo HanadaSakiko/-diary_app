@@ -1,7 +1,7 @@
 import React from "react";
 import DiaryList from "./components/DiaryList";
 // import DiaryForm from "./components/DiaryForm";
-// import diaryService from "./services/diaryService";
+
 
 function App() {
   return (

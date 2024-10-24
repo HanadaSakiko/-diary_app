@@ -1,11 +1,11 @@
 import Axios from 'axios';
 
-const getDiary = () => {
+const getDiaries = () => {
   return Axios.get("http://localhost:3001/api/get/diaries")
 }
 
 const diaryService = {
-  getDiary
+  getDiaries
 };
 
 export default diaryService;
