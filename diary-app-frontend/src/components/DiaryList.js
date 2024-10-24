@@ -1,14 +1,5 @@
 import { useState, useEffect } from 'react';
-// import diaryService from "../services/diaryService";
-import Axios from 'axios';
-
-//TODO:../services/diaryService側に後ほど記載
-// GET /diaries エンドポイントからデータを取得
-const getDiaries = () => {
-  return Axios.get("http://localhost:3001/api/diaries");
-}
-
-console.log(getDiaries());
+import diaryService from "../services/diaryService";
 
 //データを表示するコンポーネント
 const DiaryList = () => {
@@ -17,7 +8,7 @@ const DiaryList = () => {
 
   //日記のデータが更新された際も常に取得する
   const refreshDiaries = () => {
-    getDiaries().then(response => {
+    diaryService.getDiaries().then(response => {
       setDiaries(response.data);
     });
   };
