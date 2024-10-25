@@ -6,13 +6,13 @@ const getDiaries = () => {
 }
 
 //日記を作成する
-const createDiaries = (title,content) => {
-  return Axios.post("http://localhost:3001/api/diaries")
-}
+  const addDiary = (title,content) => {
+    return Axios.post("http://localhost:3001/api/diaries", { title, content })
+  }
 
 const diaryService = {
   getDiaries,
-  createDiaries
+  addDiary
 };
 
 export default diaryService;
