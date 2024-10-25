@@ -13,5 +13,4 @@ const getDiaries = (req, res) => {
     }
   });
 }
-
 module.exports = { getDiaries };
