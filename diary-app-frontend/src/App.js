@@ -1,16 +1,16 @@
 import React from "react";
 import DiaryList from "./components/DiaryList";
-// import DiaryForm from "./components/DiaryForm";
+import DiaryForm from "./components/DiaryForm";
 
-
+//TODO:日記新規作成画面は一覧画面から遷移するように変更する
 function App() {
   return (
       <div className="App">
-      <p>日記一覧</p>
-      <button>新規作成</button><br/><br/>
       < DiaryList />
+      < DiaryForm />
       </div>
   )
 }
+
 
 export default App;

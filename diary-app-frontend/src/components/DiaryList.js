@@ -20,19 +20,23 @@ const DiaryList = () => {
   }, []);
 
   //日記一覧を順番に取り出す
+  //TODO:各日記の項目をクリックすると日記の詳細画面に遷移するようにする
   const diariesList = diaries.map((val, index) => {
     return(
     <>
       <li key={index}>{val.title}</li>
       <li key={index}>{val.date}</li>
       <button onClick={refreshDiaries}>削除</button>
-      </>
+    </>
       )
   });
 
-//取得した日記のデータを表示
+  //取得した日記のデータを表示
+  //TODO:新規作成ボタンで日記新規作成フォームに遷移するようにする
   return (
     <div className="diaryList">
+      <h1>日記一覧</h1>
+      <button>新規作成</button><br/><br/>
       {diariesList}
     </  div>
   )
