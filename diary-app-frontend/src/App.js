@@ -1,10 +1,11 @@
 import React from "react";
+import { useState, useEffect } from 'react';
+import { Routes, Route} from 'react-router-dom';
 import DiaryList from "./components/DiaryList";
 import DiaryForm from "./components/DiaryForm";
-import { useState, useEffect } from 'react';
+import DiaryDetail from "./components/DiaryDetail";
 import diaryService from "./services/diaryService";
 
-//TODO:日記新規作成画面は一覧画面から遷移するように変更する
 function App() {
   const [diaries, setDiaries] = useState([]);
 
@@ -40,14 +41,17 @@ const addDiary = (title, content) => {
           alert("タイトルまたは内容を入力してください")
         }
 }
-  
-//画面表示領域
+
+//画面表示領域(ルーティング設定)
   return (
-      <div className="App">
-      < DiaryList diaries={diaries} />
-      < DiaryForm addDiary={addDiary}/>
-      </div>
-  )
+    <div>
+      <Routes>
+        <Route path="/" element={<DiaryList diaries={diaries}/>}/>
+        <Route path="/diary_form" element={<DiaryForm addDiary={addDiary} />} />
+        <Route path="/diary_detail" element={<DiaryDetail/>}/>
+      </Routes>
+  </div>
+  );
 }
 
 export default App;
