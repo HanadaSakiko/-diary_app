@@ -6,7 +6,7 @@ const diariesController = require("../controllers/diariesController.js");
 router.get("/diaries", diariesController.getDiaries);
 
 // // 新しい日記を作成する
-// router.post("/diaries", diariesController.createDiaries);
+router.post("/diaries", diariesController.createDiaries);
 
 // // 特定の日記を更新
 // router.put("/diaries/:id", diariesController.updateDiaries);
