@@ -43,4 +43,19 @@ const getDiaryDetail = (req, res) => {
   })
 }
 
-module.exports = { getDiaries,createDiaries,getDiaryDetail};
+// 日記の更新
+const updateDiaries = (req, res) => {
+  const id = req.params.id; //URLパラメーターからidを取得
+  const { title, content } = req.body;
+  const sqlUpdate = "UPDATE diaries SET title = ?, content =? WHERE id = ?";
+  db.query(sqlUpdate,[title, content, id], (err, result) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send("日記の更新に失敗しました");
+    } else {
+      res.status(200).send("日記の更新に成功しました")
+    }
+  });
+}
+
+module.exports = { getDiaries,createDiaries,getDiaryDetail,updateDiaries};

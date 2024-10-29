@@ -4,6 +4,7 @@ import { Routes, Route} from 'react-router-dom';
 import DiaryList from "./components/DiaryList";
 import DiaryForm from "./components/DiaryForm";
 import DiaryDetail from "./components/DiaryDetail";
+import DiaryEdit from "./components/DiaryEdit";
 import diaryService from "./services/diaryService";
 
 function App() {
@@ -48,6 +49,7 @@ const addDiary = (title, content) => {
         <Route path="/diaries" element={<DiaryList diaries={diaries}/>}/>
         <Route path="/diary_form" element={<DiaryForm addDiary={addDiary} />} />
         <Route path="/diaries/:id" element={<DiaryDetail/>} />
+        <Route path="/diaries/edit/:id" element={<DiaryEdit/>} />
       </Routes>
     </div>
   );
