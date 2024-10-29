@@ -8,14 +8,11 @@ router.get("/diaries", diariesController.getDiaries);
 // 新しい日記を作成する
 router.post("/diaries", diariesController.createDiaries);
 
-// 特定の日記の詳細画面を表示
+// 特定の日記のデータを取得
 router.get("/diaries/:id", diariesController.getDiaryDetail);
 
-//特定の日記の編集ページを表示
-// router.get("/diaries/edit/:id", diariesController.editDiaries);
-
 //特定の日記の更新
-// router.put("/diaries/update/:id", diariesController.updateDiaries);
+router.put("/diaries/update/:id", diariesController.updateDiaries);
 
 //特定の日記の削除
 // router.put("/diaries/delete/:id", diariesController.deleteDiaries);
