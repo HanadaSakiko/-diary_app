@@ -28,4 +28,19 @@ const createDiaries = (req, res) => {
   });
 }
 
-module.exports = { getDiaries,createDiaries};
+// 特定の日記のみのデータを取得する
+const getDiaryDetail = (req, res) => {
+  const id = req.params.id; //URLパラメーターからidを取得
+  //フロント側からリクエストで送られたidに一致する日記を取得
+  const sqlSelectDetail = "SELECT * FROM diaries WHERE id = ?"
+  db.query(sqlSelectDetail,[id],(err, result) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send("日記のデータ取得に失敗しました");
+    } else {
+      res.send(result[0]);
+    }
+  })
+}
+
+module.exports = { getDiaries,createDiaries,getDiaryDetail};

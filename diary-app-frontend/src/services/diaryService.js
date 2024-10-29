@@ -10,9 +10,16 @@ const getDiaries = () => {
     return Axios.post("http://localhost:3001/api/diaries", { title, content })
   }
 
+//特定の日記データを取得する
+const getDiaryDetail = (id) => {
+  return Axios.get(`http://localhost:3001/api/diaries/${id}`,{id});
+}
+
+
 const diaryService = {
   getDiaries,
-  addDiary
+  addDiary,
+  getDiaryDetail
 };
 
 export default diaryService;
