@@ -22,7 +22,6 @@ function App() {
     refreshDiaries();
   }, []);
 
-
   //日記の追加
   //ボタンが押されたときのイベント値が空でないかどうかを判定し、問題なければ処理を実行
   //処理の中身：日記の作成　成功したら一覧画面に遷移し、失敗したらメッセージを出す
@@ -46,11 +45,11 @@ const addDiary = (title, content) => {
   return (
     <div>
       <Routes>
-        <Route path="/" element={<DiaryList diaries={diaries}/>}/>
+        <Route path="/diaries" element={<DiaryList diaries={diaries}/>}/>
         <Route path="/diary_form" element={<DiaryForm addDiary={addDiary} />} />
-        <Route path="/diary_detail" element={<DiaryDetail/>}/>
+        <Route path="/diaries/:id" element={<DiaryDetail/>} />
       </Routes>
-  </div>
+    </div>
   );
 }
 
