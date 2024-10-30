@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
-import { useParams} from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
 import diaryService from "../services/diaryService";
 
-const DiaryEdit = () => {
+const DiaryEdit = ({refreshDiaries}) => {
   //初期値を空オブジェクトとして設定
   const [diary, setDiary] = useState({title:"",content:""});
   //ルートパラメーターからidを取得し、取得したオブジェクトを数値にする
@@ -20,7 +21,6 @@ const DiaryEdit = () => {
     }
   }, [id]);
   
-
     //タイトルの値が変更されたらその値をsetTitleにセット
   const changeTitle = (e) => {
     setDiary({...diary, title: e.target.value});
@@ -30,12 +30,15 @@ const DiaryEdit = () => {
     setDiary({ ...diary,content:e.target.value });
   }
 
+  const navigate = useNavigate();
+
   //更新の処理とエラーハンドリング
-  //TODO:処理完了後は一覧画面に遷移
   const updateDiary = () => {
     if (diary.title && diary.content) {
       diaryService.updateDiary(id,diary.title,diary.content).then(() => {
         alert("日記を更新して保存しました");
+        refreshDiaries(); //更新後の日記のデータを取得する
+        navigate("/diaries"); //更新後一覧画面に遷移
       })
         .catch(err => {
           console.error("Error update diary: ", err);

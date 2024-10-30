@@ -2,17 +2,16 @@ import React from "react";
 import { useNavigate, Link } from 'react-router-dom';
 import diaryService from "../services/diaryService";
 
-
 // 日記を表示するコンポーネント
-const DiaryList = ({ diaries }) => {
-  
+const DiaryList = ({ diaries,refreshDiaries }) => {
     //削除ボタンを押下したときの処理
     const deleteDiary = (id) => {
       const result = window.confirm("削除します。本当に宜しいですか？");
       if (result) {
         diaryService.deleteDiary(id).then(() => {
           alert("指定された日記を削除しました");
-          //TODO:一覧画面に遷移する処理をここに
+          refreshDiaries();
+          navigate("/diaries"); // 削除完了後に一覧画面に遷移
         })
           .catch(err => {
             console.error("Error delete diary: ", err);
