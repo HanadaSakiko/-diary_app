@@ -8,18 +8,30 @@ const DiaryDetail = () => {
   const [diary, setDiary] = useState(null);
   //ルートパラメーターからidを取得し、取得したオブジェクトを数値にする
   const params = useParams();
-  const id = parseInt(params["id"]);
+  const diaryId = parseInt(params["id"]);
   useEffect(() => {
-    if (id) {
-      diaryService.getDiaryDetail(id).then(response => {
+    if (diaryId) {
+      diaryService.getDiaryDetail(diaryId).then(response => {
         setDiary(response.data);
       }).catch(err => {
         console.error("Error get diary: ", err);
         alert("日記のデータ取得に失敗しました");
       });
     }
-  }, [id]);
+  }, [diaryId]);
 
+    //削除ボタンを押下したときの処理
+    const deleteDiary = (id) => {
+      diaryService.deleteDiary(id).then(() => {
+        alert("指定された日記を削除しました");
+        //TODO:一覧画面に遷移する処理をここに
+      })
+        .catch(err => {
+          console.error("Error delete diary: ", err);
+          alert("指定された日記の削除に失敗しました");
+      })
+    }
+  
   const navigate = useNavigate();
   //日記が見つかった場合と見つからなかった場合で返す処理を分ける
   if (diary) {
@@ -30,8 +42,8 @@ const DiaryDetail = () => {
           <li>{diary.title}</li>
           <li>{diary.date}</li>
           <li>{diary.content}</li>
-          <button onClick = {()=>navigate(`/diaries/edit/${id}`)}>編集</button>
-          <button>削除</button>
+          <button onClick = {()=>navigate(`/diaries/edit/${diaryId}`)}>編集</button>
+        <button onClick={() => deleteDiary(diaryId)}>削除</button>
         </ul>
       </div>
     );
