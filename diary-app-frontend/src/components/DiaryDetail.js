@@ -21,17 +21,20 @@ const DiaryDetail = () => {
   }, [diaryId]);
 
     //削除ボタンを押下したときの処理
-    const deleteDiary = (id) => {
-      diaryService.deleteDiary(id).then(() => {
-        alert("指定された日記を削除しました");
-        //TODO:一覧画面に遷移する処理をここに
-      })
-        .catch(err => {
-          console.error("Error delete diary: ", err);
-          alert("指定された日記の削除に失敗しました");
-      })
+  const deleteDiary = (id) => {
+      const result = window.confirm("削除します。本当に宜しいですか？");
+      if (result) {
+        diaryService.deleteDiary(id).then(() => {
+          alert("指定された日記を削除しました");
+          //TODO:一覧画面に遷移する処理をここに
+        })
+          .catch(err => {
+            console.error("Error delete diary: ", err);
+            alert("指定された日記の削除に失敗しました");
+        })
+      }
     }
-  
+
   const navigate = useNavigate();
   //日記が見つかった場合と見つからなかった場合で返す処理を分ける
   if (diary) {
