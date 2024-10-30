@@ -5,7 +5,6 @@ import diaryService from "../services/diaryService";
 const DiaryEdit = () => {
   //初期値を空オブジェクトとして設定
   const [diary, setDiary] = useState({title:"",content:""});
-
   //ルートパラメーターからidを取得し、取得したオブジェクトを数値にする
   const params = useParams();
   const id = parseInt(params["id"]);

@@ -20,12 +20,17 @@ const updateDiary = (id,title,content) => {
   return Axios.put(`http://localhost:3001/api/diaries/update/${id}`,{title, content});
 }
 
+//特定の日記データを削除する
+const deleteDiary = (id) => {
+  return Axios.delete(`http://localhost:3001/api/diaries/delete/${id}`);
+}
 
 const diaryService = {
   getDiaries,
   addDiary,
   getDiaryDetail,
-  updateDiary
+  updateDiary,
+  deleteDiary
 };
 
 export default diaryService;

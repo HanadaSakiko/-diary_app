@@ -1,9 +1,22 @@
 import React from "react";
-import {useNavigate,Link} from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
+import diaryService from "../services/diaryService";
 
-//日記を表示するコンポーネント
-const DiaryList = ({diaries}) => {
-  //TODO:削除で削除ができるようにする
+
+// 日記を表示するコンポーネント
+const DiaryList = ({ diaries }) => {
+
+    //削除の処理
+    const deleteDiary = (id) => {
+        diaryService.deleteDiary(id).then(() => {
+          alert("指定された日記を削除しました");
+        })
+          .catch(err => {
+            console.error("Error delete diary: ", err);
+            alert("指定された日記の削除に失敗しました");
+        })
+    }
+  
   const navigate = useNavigate();
   return (
   <div className="diaryList">
@@ -11,13 +24,13 @@ const DiaryList = ({diaries}) => {
       <button onClick = {()=>navigate("/diary_form")}>新規作成</button><br /><br />
       <ul >
         {diaries.map((val) => (
-          <Link to={`/diaries/${val.id}`}>
             <li key ={val.id}>
-              <span>{val.title}</span>
+              <Link to={`/diaries/${val.id}`}>
+                <span>{val.title}</span>
+              </Link>
               <span>{val.date}</span>
-              <button onClick="">削除</button>
+              <button onClick={() => deleteDiary(val.id)}>削除</button>
             </li>
-          </Link>
         ))}
       </ul>
     </  div>

@@ -12,9 +12,9 @@ router.post("/diaries", diariesController.createDiaries);
 router.get("/diaries/:id", diariesController.getDiaryDetail);
 
 //特定の日記の更新
-router.put("/diaries/update/:id", diariesController.updateDiaries);
+router.put("/diaries/update/:id", diariesController.updateDiary);
 
 //特定の日記の削除
-// router.put("/diaries/delete/:id", diariesController.deleteDiaries);
+router.delete("/diaries/delete/:id", diariesController.deleteDiary);
 
 module.exports = router;
