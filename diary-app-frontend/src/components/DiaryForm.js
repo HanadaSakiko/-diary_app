@@ -18,7 +18,7 @@ const DiaryForm = ({addDiary}) => {
   return (
     <div className="diaryBox diaryForm">
       <h1>日記作成</h1>
-      <ul className="FormArea contentsBox">
+      <ul className="FormArea">
         <li>
           <p>タイトル</p>
           <input type="text" value={title} placeholder="日記のタイトルを入力してください" onChange={changeTitle} />

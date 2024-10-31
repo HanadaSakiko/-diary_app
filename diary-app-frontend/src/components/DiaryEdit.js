@@ -9,18 +9,18 @@ const DiaryEdit = ({ refreshDiaries }) => {
   const [diary, setDiary] = useState({title:"",content:""});
   //ルートパラメーターからidを取得し、取得したオブジェクトを数値にする
   const params = useParams();
-  const id = parseInt(params["id"]);
+  const diaryId = parseInt(params["id"]);
 
   useEffect(() => {
-    if (id) {
-      diaryService.getDiaryDetail(id).then(response => {
+    if (diaryId) {
+      diaryService.getDiaryDetail(diaryId).then(response => {
         setDiary(response.data);
       }).catch(err => {
         console.error("Error get diary: ", err);
         alert("日記のデータ取得に失敗しました");
       });
     }
-  }, [id]);
+  }, [diaryId]);
   
   //フォームに入力された際の日記のタイトルの値
   const changeTitle = (e) => {
@@ -34,7 +34,7 @@ const DiaryEdit = ({ refreshDiaries }) => {
   //日記のタイトルと内容が入力されていれば更新処理、そうでなければエラー
   const updateDiary = () => {
     if (diary.title && diary.content) {
-      diaryService.updateDiary(id,diary.title,diary.content).then(() => {
+      diaryService.updateDiary(diaryId,diary.title,diary.content).then(() => {
         alert("日記を更新して保存しました");
         refreshDiaries(); //更新後の日記のデータを取得する
         navigate("/diaries"); //更新後一覧画面に遷移
@@ -51,7 +51,7 @@ const DiaryEdit = ({ refreshDiaries }) => {
   return (
       <div className="diaryBox diaryForm">
         <h1>日記編集</h1>
-        <ul className="FormArea contentsBox">
+        <ul className="FormArea">
           <li>
             <p>タイトル</p>
             <input type="text" value={diary.title} size="33" onChange={changeTitle} />
