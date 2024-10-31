@@ -1,6 +1,8 @@
 import React from "react";
+import './reset.css';
+import './App.css';
 import { useState, useEffect } from 'react';
-import { Routes, Route} from 'react-router-dom';
+import { Routes, Route,useNavigate} from 'react-router-dom';
 import DiaryList from "./components/DiaryList";
 import DiaryForm from "./components/DiaryForm";
 import DiaryDetail from "./components/DiaryDetail";
@@ -17,21 +19,20 @@ function App() {
     });
   };
 
-  //refreshDiariesが実行されたら空の配列を監視
-  //空の配列はuseStateの初期値として設定
   useEffect(() => {
     refreshDiaries();
   }, []);
 
-  //日記の追加
-  //ボタンが押されたときのイベント値が空でないかどうかを判定し、問題なければ処理を実行
-  //処理の中身：日記の作成　成功したら一覧画面に遷移し、失敗したらメッセージを出す
-  //TODO:一覧画面に遷移する処理を書く
+  const navigate = useNavigate();
+
+  //日記の新規作成
+  //タイトル、内容が空でないかを判定し、問題ない場合は日記を作成し、そうでない場合はエラーとする
 const addDiary = (title, content) => {
         if (title && content) {
           diaryService.addDiary(title, content).then(() => {
             alert("日記の作成に成功しました");
-            refreshDiaries();
+            refreshDiaries(); //新たに作成されたデータを含む日記を反映
+            navigate("/diaries"); // 削除完了後に一覧画面に遷移
           })
             .catch(err => {
               console.error("Error create diary: ", err);
@@ -46,10 +47,10 @@ const addDiary = (title, content) => {
   return (
     <div>
       <Routes>
-        <Route path="/diaries" element={<DiaryList diaries={diaries}/>}/>
+        <Route path="/diaries" element={<DiaryList diaries={diaries} refreshDiaries={refreshDiaries}/>}/>
         <Route path="/diary_form" element={<DiaryForm addDiary={addDiary} />} />
-        <Route path="/diaries/:id" element={<DiaryDetail/>} />
-        <Route path="/diaries/edit/:id" element={<DiaryEdit/>} />
+        <Route path="/diaries/:id" element={<DiaryDetail refreshDiaries={refreshDiaries} />} />
+        <Route path="/diaries/edit/:id" element={<DiaryEdit refreshDiaries={refreshDiaries} />} />
       </Routes>
     </div>
   );

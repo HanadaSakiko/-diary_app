@@ -1,0 +1,190 @@
+@charset "UTF-8";
+
+/* 全体のスタイル */
+.App {
+  text-align: left;
+  width: 80%;
+  max-width: 800px;
+  margin: 0 auto;
+  color: #333;
+  background-color: #ffffff;
+}
+
+.diaryBox {
+  width: 50%;
+  background: #EEE;
+  margin: 50px auto 0;
+  padding: 20px;
+  text-align: center;
+}
+
+a{
+  text-decoration-line: none;
+  color: #333;
+}
+
+a:hover{
+  color: #0000cd;
+}
+
+button{
+  color: #fff;
+  border: none;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 8px;
+}
+
+
+.deleteBtn{
+  background: #ff4500;
+}
+.deleteBtn:hover{
+  background: #ff7f50
+}
+
+.successBtn{
+  background: #32cd32;
+}
+
+.successBtn:hover{
+  background: #00ff00
+}
+
+h1{
+  font-size: 2rem;
+  font-weight:  bold;
+  margin-bottom: 20px;
+}
+
+
+/* 一覧画面 */
+.diaryList li{
+  width:90%;
+  background: #fff;
+  padding: 10px 20px;
+  margin: 0 auto 20px;
+  border-radius: 8px;
+  text-align: left;
+  line-height: 3;
+}
+
+.diaryList li span{
+  padding-right: 20px;
+}
+
+.diaryList li{
+  display: flex;
+  justify-content: space-between;
+}
+
+.diaryList .deleteBtn{
+  text-align: right;
+}
+
+.diaryList .successBtn{
+  font-size: 1.125rem ;
+
+}
+
+
+/* 一覧画面 */
+.diaryList li{
+  width:90%;
+  background: #fff;
+  padding: 10px 25px;
+  margin: 0 auto 20px;
+  border-radius: 8px;
+  text-align: left;
+  line-height: 3;
+}
+
+.diaryList li span{
+  padding-right: 20px;
+}
+
+.diaryList li{
+  display: flex;
+  justify-content: space-between;
+}
+
+.diaryList .deleteBtn{
+  text-align: right;
+}
+
+.diaryList .successBtn{
+  font-size: 1.125rem ;
+
+}
+
+/* 詳細画面 */
+.contentsBox{
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.contents{
+  text-align: left;
+  margin-bottom:20px;
+}
+
+.contentsHead{
+  display: flex;
+  font-size: 1.125rem;
+  margin: 20px 0 10px;
+}
+
+.contentsHead li{
+  font-weight: bold;
+  text-align: left;
+}
+.contentsHead li:first-child{
+  padding-right:10px;
+}
+
+.buttonArea {
+  text-align: right;
+}
+.buttonArea button:first-child{
+  margin-right: 10px;
+}
+
+/* 新規作成、更新画面*/
+
+.diaryForm li{
+  width:90%;
+  background: #fff;
+  /* padding: 10px 25px; */
+  margin: 0 auto 20px;
+  border-radius: 8px;
+  text-align: left;
+}
+
+.diaryForm li p{
+  margin-left:5%;
+  font-size:1.125rem;
+}
+
+
+.diaryForm input,
+textarea
+{
+  width: 90%;
+  padding: 10px;
+  margin: 5px 5%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+
+textarea
+{
+  field-sizing: content;
+  min-height:15vh;
+}
+
+.diaryForm .successBtn{
+  width: 95%;
+  margin: 5px 5%;
+}

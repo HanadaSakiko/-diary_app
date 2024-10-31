@@ -6,7 +6,7 @@ const getDiaries = () => {
 }
 
 //日記を作成する
-  const addDiary = (title,content) => {
+  const addDiary = (title,content,) => {
     return Axios.post("http://localhost:3001/api/diaries", { title, content })
   }
 
