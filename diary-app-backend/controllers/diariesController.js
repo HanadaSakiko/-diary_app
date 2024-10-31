@@ -2,7 +2,7 @@ const db = require("../config/database")
 
 //日記のデータを取得する
 const getDiaries = (req, res) => {
-  const sqlSelect = "SELECT * FROM diaries"
+  const sqlSelect = "SELECT id,title,content,DATE_FORMAT(date, '%Y-%m-%d') AS date FROM diaries"
   // 日記データを取得するSQLクエリ作成後、処理が正常か判定
   db.query(sqlSelect, (err, result) => {
     if (err) {
@@ -32,7 +32,7 @@ const createDiaries = (req, res) => {
 const getDiaryDetail = (req, res) => {
   const id = req.params.id; //URLパラメーターからidを取得
   //フロント側からリクエストで送られたidに一致する日記を取得
-  const sqlSelectDetail = "SELECT * FROM diaries WHERE id = ?"
+  const sqlSelectDetail = "SELECT id,title,content,DATE_FORMAT(date, '%Y-%m-%d') AS date FROM diaries WHERE id = ?"
   db.query(sqlSelectDetail,[id],(err, result) => {
     if (err) {
       console.error(err);
