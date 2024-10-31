@@ -4,12 +4,14 @@ import diaryService from "../services/diaryService";
 
 //詳細画面を表示するコンポーネントを作成
 const DiaryDetail = ({ refreshDiaries }) => {
+
   //特定の日記データをセット
   const [diary, setDiary] = useState(null);
-  //ルートパラメーターからidを取得し、取得したオブジェクトを数値にする
+  //idを取得し、取得したidのオブジェクトを数値に変換
   const params = useParams();
   const diaryId = parseInt(params["id"]);
   
+  //特定の日記データ取得
   useEffect(() => {
     if (diaryId) {
       diaryService.getDiaryDetail(diaryId).then(response => {
@@ -27,7 +29,7 @@ const DiaryDetail = ({ refreshDiaries }) => {
       if (result) {
         diaryService.deleteDiary(id).then(() => {
           alert("指定された日記を削除しました");
-          refreshDiaries();
+          refreshDiaries(); //削除後に最新のデータを取得
           navigate("/diaries"); // 削除完了後に一覧画面に遷移
         })
           .catch(err => {
@@ -39,7 +41,7 @@ const DiaryDetail = ({ refreshDiaries }) => {
 
   const navigate = useNavigate();
 
-  //指定された日記が存在していれば、詳細画面を表示し、そうでなければページにメッセージを表示
+  //指定された日記が存在していれば、詳細画面を表示。そうでなければページにメッセージを表示
   if (diary) {
   return (
       <div className="diaryBox diaryDetail">
@@ -62,7 +64,7 @@ const DiaryDetail = ({ refreshDiaries }) => {
   } else {
     <div>
       <p>この日記は存在しない、または削除されたため、表示できません。</p>
-    </div>;
+    </div>
   }
 }
 export default DiaryDetail;

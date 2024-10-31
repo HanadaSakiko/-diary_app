@@ -10,8 +10,11 @@ import DiaryEdit from "./components/DiaryEdit";
 import diaryService from "./services/diaryService";
 
 function App() {
-  const [diaries, setDiaries] = useState([]);
+  const navigate = useNavigate();
 
+  //すべての日記データをセット
+  const [diaries, setDiaries] = useState([]);
+  
   //日記のデータが更新された際も常に取得する
   const refreshDiaries = () => {
     diaryService.getDiaries().then(response => {
@@ -23,10 +26,8 @@ function App() {
     refreshDiaries();
   }, []);
 
-  const navigate = useNavigate();
-
   //日記の新規作成
-  //タイトル、内容が空でないかを判定し、問題ない場合は日記を作成し、そうでない場合はエラーとする
+  //タイトル、内容が空でないかを判定し、問題ない場合は日記を作成。そうでない場合はエラーとする
 const addDiary = (title, content) => {
         if (title && content) {
           diaryService.addDiary(title, content).then(() => {

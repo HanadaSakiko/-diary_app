@@ -1,21 +1,20 @@
 import { useState } from 'react';
 
-//データを表示するコンポーネント
+//新規作成画面を表示するコンポーネント
 const DiaryForm = ({addDiary}) => {
 
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
 
-  //タイトルの値が変更されたらその値をsetTitleにセット
+  //フォームに入力された際の日記のタイトルの値
   const changeTitle = (e) => {
       setTitle(e.target.value);
   }
-  //内容の値が変更されたらその値をsetContentにセット
+  //フォームに入力された際の日記の内容の値
   const changeContent = (e) => {
     setContent(e.target.value);
   }
 
-  //日記の作成フォーム表示領域
   return (
     <div className="diaryBox diaryForm">
       <h1>日記作成</h1>

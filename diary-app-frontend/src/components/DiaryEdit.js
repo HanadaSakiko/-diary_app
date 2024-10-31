@@ -3,7 +3,8 @@ import { useParams } from 'react-router-dom';
 import { useNavigate} from 'react-router-dom';
 import diaryService from "../services/diaryService";
 
-const DiaryEdit = ({refreshDiaries}) => {
+const DiaryEdit = ({ refreshDiaries }) => {
+  const navigate = useNavigate();
   //初期値を空オブジェクトとして設定
   const [diary, setDiary] = useState({title:"",content:""});
   //ルートパラメーターからidを取得し、取得したオブジェクトを数値にする
@@ -21,18 +22,16 @@ const DiaryEdit = ({refreshDiaries}) => {
     }
   }, [id]);
   
-    //タイトルの値が変更されたらその値をsetTitleにセット
+  //フォームに入力された際の日記のタイトルの値
   const changeTitle = (e) => {
     setDiary({...diary, title: e.target.value});
   }
-  //内容の値が変更されたらその値をsetContentにセット
+ //フォームに入力された際の日記の内容の値
   const changeContent = (e) => {
     setDiary({ ...diary,content:e.target.value });
   }
 
-  const navigate = useNavigate();
-
-  //更新の処理とエラーハンドリング
+  //日記のタイトルと内容が入力されていれば更新処理、そうでなければエラー
   const updateDiary = () => {
     if (diary.title && diary.content) {
       diaryService.updateDiary(id,diary.title,diary.content).then(() => {
@@ -50,15 +49,6 @@ const DiaryEdit = ({refreshDiaries}) => {
   }
 
   return (
-    // <div className="diaryBox">
-    //   <h1>日記編集</h1>
-    //   <div id="diaryFormArea">
-    //     <input type="text" value={diary.title} size="33" onChange={changeTitle} /><br /><br />
-    //     <textarea rows="5" cols="33" value={diary.content} onChange={changeContent}></textarea><br /><br />
-    //     <button className="deleteBtn" onClick={() => updateDiary()}>保存する</button>
-    //   </div>
-    // </  div>
-
       <div className="diaryBox diaryForm">
         <h1>日記編集</h1>
         <ul className="FormArea contentsBox">
