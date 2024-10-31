@@ -42,14 +42,20 @@ const DiaryDetail = ({ refreshDiaries }) => {
   //指定された日記が存在していれば、詳細画面を表示し、そうでなければページにメッセージを表示
   if (diary) {
   return (
-      <div>
+      <div className="diaryBox diaryDetail">
         <h1>日記の詳細</h1>
-        <ul>
-          <li>{diary.title}</li>
-          <li>{diary.date}</li>
-          <li>{diary.content}</li>
-          <button onClick = {()=>navigate(`/diaries/edit/${diaryId}`)}>編集</button>
-        <button onClick={() => deleteDiary(diaryId)}>削除</button>
+      <ul>
+        <div className="contentsBox">
+          <div className="contentsHead">
+            <li>{diary.title}</li>
+            <li>{diary.date}</li>
+          </div>
+          <li >{diary.content}</li>
+        </div >
+        <div className="buttonArea">
+          <button className="successBtn"onClick = {()=>navigate(`/diaries/edit/${diaryId}`)}>編集</button>
+          <button className="deleteBtn" onClick={() => deleteDiary(diaryId)}>削除</button>
+        </div>
         </ul>
       </div>
     );

@@ -50,12 +50,12 @@ const DiaryEdit = ({refreshDiaries}) => {
   }
 
   return (
-    <div className="diaryForm">
+    <div className="diaryBox">
       <h1>日記編集</h1>
       <div id="diaryFormArea">
         <input type="text" value={diary.title} size="33" onChange={changeTitle} /><br /><br />
         <textarea rows="5" cols="33" value={diary.content} onChange={changeContent}></textarea><br /><br />
-        <button onClick={() => updateDiary()}>保存する</button>
+        <button className="deleteBtn" onClick={() => updateDiary()}>保存する</button>
       </div>
     </  div>
   );

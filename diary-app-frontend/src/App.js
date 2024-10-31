@@ -1,4 +1,6 @@
 import React from "react";
+import './reset.css';
+import './App.css';
 import { useState, useEffect } from 'react';
 import { Routes, Route,useNavigate} from 'react-router-dom';
 import DiaryList from "./components/DiaryList";
