@@ -46,7 +46,7 @@ const DiaryDetail = ({ refreshDiaries }) => {
   return (
       <div className="diaryBox diaryDetail">
         <h1>日記の詳細</h1>
-      <ul className="contentsBox">
+      <ul className="FormArea">
         <div className="contents">
           <div className="contentsHead">
             <li>{diary.title}</li>

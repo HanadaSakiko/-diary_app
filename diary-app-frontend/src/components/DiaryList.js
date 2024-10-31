@@ -26,7 +26,7 @@ const DiaryList = ({ diaries, refreshDiaries }) => {
   <div className="diaryBox diaryList">
       <h1>日記一覧</h1>
       <button className="successBtn" onClick = {()=>navigate("/diary_form")}>新規作成</button><br /><br />
-      <ul >
+      <ul>
         {diaries.map((val) => (
             <li key={val.id}>
              <Link to={`/diaries/${val.id}`}>
