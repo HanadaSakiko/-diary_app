@@ -50,14 +50,31 @@ const DiaryEdit = ({refreshDiaries}) => {
   }
 
   return (
-    <div className="diaryBox">
-      <h1>日記編集</h1>
-      <div id="diaryFormArea">
-        <input type="text" value={diary.title} size="33" onChange={changeTitle} /><br /><br />
-        <textarea rows="5" cols="33" value={diary.content} onChange={changeContent}></textarea><br /><br />
-        <button className="deleteBtn" onClick={() => updateDiary()}>保存する</button>
-      </div>
-    </  div>
+    // <div className="diaryBox">
+    //   <h1>日記編集</h1>
+    //   <div id="diaryFormArea">
+    //     <input type="text" value={diary.title} size="33" onChange={changeTitle} /><br /><br />
+    //     <textarea rows="5" cols="33" value={diary.content} onChange={changeContent}></textarea><br /><br />
+    //     <button className="deleteBtn" onClick={() => updateDiary()}>保存する</button>
+    //   </div>
+    // </  div>
+
+      <div className="diaryBox diaryForm">
+        <h1>日記編集</h1>
+        <ul className="FormArea contentsBox">
+          <li>
+            <p>タイトル</p>
+            <input type="text" value={diary.title} size="33" onChange={changeTitle} />
+          </li>
+          <li>
+            <p>内容</p>
+            <textarea rows="5" cols="33" value={diary.content} onChange={changeContent}></textarea>
+          </li>
+          <li>
+            <button className="successBtn" onClick={() => updateDiary()}>保存する</button>
+          </li>
+        </ul>
+      </  div>
   );
 }
 

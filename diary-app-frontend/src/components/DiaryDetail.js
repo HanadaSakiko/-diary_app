@@ -44,8 +44,8 @@ const DiaryDetail = ({ refreshDiaries }) => {
   return (
       <div className="diaryBox diaryDetail">
         <h1>日記の詳細</h1>
-      <ul>
-        <div className="contentsBox">
+      <ul className="contentsBox">
+        <div className="contents">
           <div className="contentsHead">
             <li>{diary.title}</li>
             <li>{diary.date}</li>
@@ -56,7 +56,7 @@ const DiaryDetail = ({ refreshDiaries }) => {
           <button className="successBtn"onClick = {()=>navigate(`/diaries/edit/${diaryId}`)}>編集</button>
           <button className="deleteBtn" onClick={() => deleteDiary(diaryId)}>削除</button>
         </div>
-        </ul>
+      </ul>
       </div>
     );
   } else {
