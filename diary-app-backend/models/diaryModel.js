@@ -12,34 +12,31 @@ const DiaryModel = {
     }
 
     // 日記を作成する
-    addDiary:(req, callback) => {
-      const { title, content } = req.body;
+    addDiary:(diaryData, callback) => {
       //新たな日記データを挿入するクエリ
       const sqlInsertDiary = "INSERT INTO diaries (title, content,date) VALUE(?, ?, NOW() )";
       //クエリを実行し、取得結果をコールバック関数に返す
-      db.query(sqlInsertDiary, [title, content],callback)
+      db.query(sqlInsertDiary, [diaryData.title, diaryData.content],callback)
     }
 
     // 特定の日記のみのデータを取得する
-  const getDiary = (req, callback) => {
-    const id = req.params.id; //URLパラメーターからidを取得
+  getDiary:(diaryId, callback) => {
     //フロント側からリクエストで送られたidに一致する日記を取得
     const sqlSelectDiary = "SELECT id,title,content,DATE_FORMAT(date, '%Y-%m-%d') AS date FROM diaries WHERE id = ?"
-    db.query(sqlSelectDiary,[id],callback)
+    db.query(sqlSelectDiary,[diaryId],callback)
   }
 
   // 日記の更新
-  const updateDiary = (req, callback) => {
-    const id = req.params.id; //URLパラメーターからidを取得
+  updateDiary:(diaryId, diaryData, callback) => {
     const { title, content } = req.body;
     const sqlUpdateDiary = "UPDATE diaries SET title = ?, content =? WHERE id = ?";
-    db.query(sqlUpdateDiary,[title, content, id], callback);
+    db.query(sqlUpdateDiary,[diaryData.title, diaryData.content, diaryId], callback);
   }
 
   // 日記の削除
-  const deleteDiary = (req, callback) => {
+  deleteDiary:(diaryId, callback) => {
     const id = req.params.id; //URLパラメーターからidを取得
     const sqlDeleteDiary = "DELETE from diaries WHERE id = ?";
-    db.query(sqlDeleteDiary,[id],callback);
+    db.query(sqlDeleteDiary,[diaryId],callback);
   }
 }
