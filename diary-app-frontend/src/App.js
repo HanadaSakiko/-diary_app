@@ -43,12 +43,29 @@ const addDiary = (title, content) => {
           alert("タイトルまたは内容を入力してください")
         }
 }
+  
+      //日記の削除処理
+      const deleteDiary = (id) => {
+        const result =  window.confirm("削除します。本当に宜しいですか？");
+        if (result) {
+          diaryService.deleteDiary(id).then(() => {
+            alert("指定された日記を削除しました");
+            refreshDiaries(); //削除後に最新のデータを取得
+            navigate("/diaries"); // 削除完了後に一覧画面に遷移
+          })
+            .catch(err => {
+              console.error("Error delete diary: ", err);
+              alert("指定された日記の削除に失敗しました");
+          })
+        }
+      }
 
 //画面表示領域(ルーティング設定)
   return (
     <div>
       <Routes>
-        <Route path="/diaries" element={<DiaryList diaries={diaries} refreshDiaries={refreshDiaries}/>}/>
+        {/* <Route path="/diaries" element={<DiaryList diaries={diaries} refreshDiaries={refreshDiaries} />} /> */}
+        <Route path="/diaries" element={<DiaryList diaries={diaries} deleteDiary={deleteDiary} />}/>
         <Route path="/diary_form" element={<DiaryForm addDiary={addDiary} />} />
         <Route path="/diaries/:id" element={<DiaryDetail refreshDiaries={refreshDiaries} />} />
         <Route path="/diaries/edit/:id" element={<DiaryEdit refreshDiaries={refreshDiaries} />} />

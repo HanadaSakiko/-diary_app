@@ -3,7 +3,7 @@ import { useParams,useNavigate} from 'react-router-dom';
 import diaryService from "../services/diaryService";
 
 //詳細画面を表示するコンポーネントを作成
-const DiaryDetail = ({ refreshDiaries }) => {
+const DiaryDetail = ({deleteDiary}) => {
 
   //特定の日記データをセット
   const [diary, setDiary] = useState(null);
@@ -23,21 +23,21 @@ const DiaryDetail = ({ refreshDiaries }) => {
     }
   }, [diaryId]);
 
-    //日記の削除処理
-    const deleteDiary = (id, diaries) => {
-      const result =  window.confirm("削除します。本当に宜しいですか？");
-      if (result) {
-        diaryService.deleteDiary(id).then(() => {
-          alert("指定された日記を削除しました");
-          refreshDiaries(); //削除後に最新のデータを取得
-          navigate("/diaries"); // 削除完了後に一覧画面に遷移
-        })
-          .catch(err => {
-            console.error("Error delete diary: ", err);
-            alert("指定された日記の削除に失敗しました");
-        })
-      }
-    }
+    // //日記の削除処理
+    // const deleteDiary = (id, diaries) => {
+    //   const result =  window.confirm("削除します。本当に宜しいですか？");
+    //   if (result) {
+    //     diaryService.deleteDiary(id).then(() => {
+    //       alert("指定された日記を削除しました");
+    //       refreshDiaries(); //削除後に最新のデータを取得
+    //       navigate("/diaries"); // 削除完了後に一覧画面に遷移
+    //     })
+    //       .catch(err => {
+    //         console.error("Error delete diary: ", err);
+    //         alert("指定された日記の削除に失敗しました");
+    //     })
+    //   }
+    // }
 
   const navigate = useNavigate();
 
@@ -56,7 +56,8 @@ const DiaryDetail = ({ refreshDiaries }) => {
         </div >
         <div className="buttonArea">
           <button className="successBtn"onClick = {()=>navigate(`/diaries/edit/${diaryId}`)}>編集</button>
-          <button className="deleteBtn" onClick={() => deleteDiary(diaryId)}>削除</button>
+          {/* <button className="deleteBtn" onClick={() => deleteDiary(diaryId)}>削除</button> */}
+          <button className="deleteBtn" onClick={deleteDiary}>削除</button>
         </div>
       </ul>
       </div>
