@@ -57,7 +57,7 @@ const DiaryDetail = ({deleteDiary}) => {
         <div className="buttonArea">
           <button className="successBtn"onClick = {()=>navigate(`/diaries/edit/${diaryId}`)}>編集</button>
           {/* <button className="deleteBtn" onClick={() => deleteDiary(diaryId)}>削除</button> */}
-          <button className="deleteBtn" onClick={deleteDiary}>削除</button>
+          <button className="deleteBtn" onClick={()=>deleteDiary(diaryId)}>削除</button>
         </div>
       </ul>
       </div>

@@ -36,7 +36,7 @@ const DiaryList = ({ diaries, deleteDiary }) => {
               </p>
             </Link>
             {/* <button className="deleteBtn" onClick={() => deleteDiary(val.id)}>削除</button> */}
-            <button className="deleteBtn" onClick={deleteDiary}>削除</button>
+            <button className="deleteBtn" onClick={()=>deleteDiary(val.id)}>削除</button>
             </li>
         ))}
       </ul>

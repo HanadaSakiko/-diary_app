@@ -67,7 +67,7 @@ const addDiary = (title, content) => {
         {/* <Route path="/diaries" element={<DiaryList diaries={diaries} refreshDiaries={refreshDiaries} />} /> */}
         <Route path="/diaries" element={<DiaryList diaries={diaries} deleteDiary={deleteDiary} />}/>
         <Route path="/diary_form" element={<DiaryForm addDiary={addDiary} />} />
-        <Route path="/diaries/:id" element={<DiaryDetail refreshDiaries={refreshDiaries} />} />
+        <Route path="/diaries/:id" element={<DiaryDetail deleteDiary={deleteDiary} />} />
         <Route path="/diaries/edit/:id" element={<DiaryEdit refreshDiaries={refreshDiaries} />} />
       </Routes>
     </div>
