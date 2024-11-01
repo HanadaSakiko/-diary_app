@@ -21,7 +21,7 @@ const DiaryEdit = ({ refreshDiaries }) => {
       });
     }
   }, [diaryId]);
-  
+
   //フォームに入力された際の日記のタイトルの値
   const changeTitle = (e) => {
     setDiary({...diary, title: e.target.value});
