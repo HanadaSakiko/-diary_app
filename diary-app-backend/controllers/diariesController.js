@@ -1,4 +1,4 @@
-const db = require("../config/database")
+const DiaryModel = require("../models/diaryModel")
 
 //日記のデータを取得する
 const getDiaryList = (req, res) => {
