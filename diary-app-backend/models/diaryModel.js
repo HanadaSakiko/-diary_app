@@ -42,3 +42,5 @@ const DiaryModel = {
       db.query(sqlDeleteDiary,[id],callback);
     },
 }
+
+module.exports = DiaryModel;
