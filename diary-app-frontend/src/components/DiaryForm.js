@@ -29,7 +29,7 @@ const DiaryForm = ({addDiary}) => {
         </li>
         <li><button className="successBtn" onClick={() => addDiary(title , content)}> 作成</button></li>
       </ul>
-    </  div>
+    </div>
   )
 }
 

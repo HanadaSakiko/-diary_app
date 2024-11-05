@@ -15,7 +15,7 @@ const useDiaries = () => {
   useEffect(() => {
     refreshDiaries();
   }, []);
-    return { diaries, refreshDiaries};
+  return { diaries, refreshDiaries};
 };
 
 export default useDiaries;
