@@ -64,7 +64,7 @@ const DiaryEdit = ({ refreshDiaries }) => {
             <button className="successBtn" onClick={() => updateDiary()}>保存する</button>
           </li>
         </ul>
-      </  div>
+      </div>
   );
 }
 

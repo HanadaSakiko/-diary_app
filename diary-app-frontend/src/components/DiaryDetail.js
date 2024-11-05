@@ -10,7 +10,7 @@ const DiaryDetail = ({deleteDiary}) => {
   //idを取得し、取得したidのオブジェクトを数値に変換
   const params = useParams();
   const diaryId = parseInt(params["id"]);
-  
+
   //特定の日記データ取得
   useEffect(() => {
     if (diaryId) {
@@ -26,8 +26,8 @@ const DiaryDetail = ({deleteDiary}) => {
   //指定された日記が存在していれば、詳細画面を表示。そうでなければページにメッセージを表示
   if (diary) {
   return (
-      <div className="diaryBox diaryDetail">
-        <h1>日記の詳細</h1>
+    <div className="diaryBox diaryDetail">
+      <h1>日記の詳細</h1>
       <ul className="FormArea">
         <div className="contents">
           <div className="contentsHead">
@@ -41,7 +41,7 @@ const DiaryDetail = ({deleteDiary}) => {
           <button className="deleteBtn" onClick={()=>deleteDiary(diaryId)}>削除</button>
         </div>
       </ul>
-      </div>
+    </div>
     );
   } else {
     <div>
