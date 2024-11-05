@@ -1,9 +1,11 @@
-const axios = require('axios');
+import axios from "axios";
 
-axios.get('')
-    .then(response => {
-        console.log(response.data);
-    })
-    .catch(error => {
-        console.error('Error fetching data:', error);
-    });
+//axiosのインスタンスを作成
+const api = axios.create({
+  baseURL: "http://localhost:3001/api",
+  headers: {
+    "Content-Type": "application/json",
+  },
+})
+
+export default api;
